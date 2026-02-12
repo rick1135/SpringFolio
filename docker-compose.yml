@@ -1,0 +1,27 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: springfolio-db
+    environment:
+      POSTGRES_USER: rick
+      POSTGRES_PASSWORD: 325158
+      POSTGRES_DB: springfolio_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # interface pra ver o banco sem instalar nada (PgAdmin)
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: springfolio-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
