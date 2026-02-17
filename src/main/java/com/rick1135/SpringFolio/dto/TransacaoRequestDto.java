@@ -1,11 +1,14 @@
 package com.rick1135.SpringFolio.dto;
 
+import com.rick1135.SpringFolio.entity.TipoAtivo;
+import com.rick1135.SpringFolio.entity.TipoTransacao;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public record TransacaoRequestDto (
     @NotBlank(message = "O ticker é obrigatório")
@@ -13,7 +16,7 @@ public record TransacaoRequestDto (
     String ticker,
 
     @NotNull(message = "O tipo da transação é obrigatório")
-    String tipo,
+    TipoTransacao tipo,
 
     @NotNull(message = "A quantidade é obrigatória")
     @Positive(message = "A quantidade deve ser positiva")
@@ -24,5 +27,8 @@ public record TransacaoRequestDto (
     BigDecimal precoUnitario,
 
     @NotNull(message = "A data da transação é obrigatória")
-    String dataTransacao
+    LocalDate dataTransacao,
+
+    @NotNull(message = "O tipo do ativo é obrigatório")
+    TipoAtivo tipoAtivo
 ) {}
