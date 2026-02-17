@@ -33,4 +33,7 @@ public class Transacao {
 
     @Column(nullable = false)
     private LocalDate dataTransacao;
+
+    @Transient
+    private TipoAtivo tipoAtivo;
 }
